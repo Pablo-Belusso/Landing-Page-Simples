@@ -12,7 +12,7 @@ export const Home = () => {
   }, []);
   const getPokemons = () => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=50")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=50") // Pede para API 50 pokemons
       .then((res) => setPokemons(res.data.results));
     //.cath((err) => console.log(err));
   };
@@ -23,9 +23,9 @@ export const Home = () => {
 
       <Container maxWidth="xg">
         <Grid container>
-          {pokemons.map((pokemon) => (
-            <Grid item xs={3}>
-              <PokemonCard />
+          {pokemons.map((pokemon, key) => (
+            <Grid item xs={3} key={key}>
+              <PokemonCard name={pokemon.name} />
             </Grid>
           ))}
         </Grid>
