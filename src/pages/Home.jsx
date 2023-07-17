@@ -10,7 +10,14 @@ export const Home = () => {
   useEffect(() => {
     getPokemons();
   }, []);
+
   const getPokemons = () => {
+    var endpoints = [];
+    for (var i = 1; i < 50; i++) {
+      endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+    }
+    console.log(endpoints);
+
     axios
       .get("https://pokeapi.co/api/v2/pokemon?limit=50") // Pede para API 50 pokemons
       .then((res) => setPokemons(res.data.results));
