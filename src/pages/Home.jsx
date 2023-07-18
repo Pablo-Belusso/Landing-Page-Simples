@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 import NavBar from "../components/NavBar";
 import PokemonCard from "../components/PokemonCard";
 import axios from "axios";
@@ -49,6 +49,7 @@ export const Home = () => {
               <PokemonCard
                 name={pokemon.data.name}
                 image={pokemon.data.sprites.front_default}
+                types={pokemon.data.types}
               />
             </Grid>
           ))}
