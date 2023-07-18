@@ -17,19 +17,25 @@ export const Home = () => {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     }
     //console.log(endpoints);
-    var response = axios
+    axios
       .all(endpoints.map((endpoint) => axios.get(endpoint)))
       .then((res) => setPokemons(res));
+  };
 
-    /* axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=50") // Pede para API 50 pokemons
-      .then((res) => setPokemons(res.data.results)); */
-    //.cath((err) => console.log(err));
+  const pokemonFilter = (name) => {
+    var filteredPokemons = [];
+    for (var i in pokemons) {
+      if (pokemons[i].data.name.includes(name)) {
+        filteredPokemons.push(pokemons[i]);
+      }
+    }
+
+    setPokemons(filteredPokemons);
   };
 
   return (
     <div>
-      <NavBar />
+      <NavBar pokemonFilter={pokemonFilter} />
 
       <Container maxWidth="xg">
         <Grid container spacing={2}>
